@@ -28,6 +28,8 @@ public class GameCanvas extends Canvas implements CommandListener  {
     
     private boolean isRun = false;
     
+    String output;
+    
      public GameCanvas(Midlet _midlet) 
     {
 	midlet = _midlet;
@@ -45,6 +47,7 @@ public class GameCanvas extends Canvas implements CommandListener  {
         hero = new Hero();
         hero.x = 6;
         hero.y = 13;
+        hero.punkty = 0;
         
         armo = new Armo();
         armo.active = false;
@@ -58,9 +61,14 @@ public class GameCanvas extends Canvas implements CommandListener  {
         
        int screenHeight = getHeight();
        int screenWidth  = getWidth();
-
+       
         g.setColor(0xffffff);	
 	g.fillRect(0,0,screenWidth, screenHeight);
+       
+        g.setColor(0,0,0);
+        g.setFont(Font.getFont(Font.FACE_PROPORTIONAL, Font.STYLE_PLAIN, Font.SIZE_MEDIUM));
+        output = "Punkty: " + hero.punkty + "";
+        g.drawString(output, 1, 15, Graphics.LEFT|Graphics.BASELINE);
         
         for (int i = 0; i < POT_W_RZEDZIE; i++)
         {
